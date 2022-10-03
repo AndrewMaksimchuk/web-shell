@@ -1,0 +1,8 @@
+- autocomplite (npm scripts)
+- colors
+- wiki
+- generate stuff (vue.js, react jsx|tsx)
+- notebook
+- generate password
+- communication with native system, execute terminal system commands and return answer from it
+- ascii art
