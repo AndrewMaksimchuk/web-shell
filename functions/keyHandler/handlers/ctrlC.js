@@ -1,6 +1,6 @@
 export default
 function
-ctrlC(bufferInput, ctrl)
+ctrlC(buffer, ctrl)
 {
     return ctrl ? process.exit() : false;
 }

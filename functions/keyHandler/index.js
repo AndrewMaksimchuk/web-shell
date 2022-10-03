@@ -26,7 +26,7 @@ handlers =
 
 export default
 function
-keyHandler({ name, ctrl }, bufferInput) 
+keyHandler({ name, ctrl }, buffer) 
 {
-    return handlers[name] ? handlers[name](bufferInput, ctrl) : false;
+    return handlers[name] ? handlers[name](buffer, ctrl) : false;
 }

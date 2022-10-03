@@ -1,11 +1,12 @@
 export default
 function
-backspace(bufferInput)
+backspace(buffer)
 {
-    const newValue = bufferInput.value.slice(0, bufferInput.value.length - 1);
+    const bufValue = buffer.get();
+    const newValue = bufValue.slice(0, bufValue.length - 1);
     process.stdout.clearLine(0);
     process.stdout.cursorTo(0); 
     process.stdout.write(newValue);
-    bufferInput.change(newValue);
+    buffer.change(newValue);
     return true;
 }

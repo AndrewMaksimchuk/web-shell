@@ -6,21 +6,21 @@ import newLine from "../../newLine.js";
 
 export default
 function
-template(bufferInput)
+template(buffer)
 {
-    if (bufferInput.get().includes(COMMANDS.template.children.create.value)) {
+    if (buffer.get().includes(COMMANDS.template.children.create.value)) {
         try {
             const CWD = process.cwd();
-            const words = bufferInput.get().trim().split(" ");
+            const words = buffer.get().trim().split(" ");
             const componentName = words.filter((word) => word.includes(".vue")).toString() || "Default.vue";
             const saveTo = words.filter((word) => word.includes(COMMANDS.template.children.create.options.path))?.toString()?.split("=")?.at(-1)?.trim() || join(CWD, "components");
             newLine();
             
-            if (bufferInput.get().includes(COMMANDS.template.children.create.options.option.value)) {
-                bufferInput.clear();
+            if (buffer.get().includes(COMMANDS.template.children.create.options.option.value)) {
+                buffer.clear();
                 return copyFileSync(`./template/vue/${COMMANDS.template.children.create.options.option.template}`, join(saveTo, componentName), constants.COPYFILE_EXCL);
             } else {
-                bufferInput.clear();
+                buffer.clear();
                 return copyFileSync(`./template/vue/composition.vue`, join(saveTo, componentName), constants.COPYFILE_EXCL);
             }
         } catch (error) {
@@ -28,7 +28,7 @@ template(bufferInput)
         }
     }
 
-    if (bufferInput.get().includes(COMMANDS.template.children.remove)) {
+    if (buffer.get().includes(COMMANDS.template.children.remove)) {
         return; // todo
     }
 }

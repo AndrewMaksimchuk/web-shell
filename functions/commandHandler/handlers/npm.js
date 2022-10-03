@@ -5,10 +5,10 @@ import newLine from "../../newLine.js";
 
 export default
 function
-npm(bufferInput)
+npm(buffer)
 {
-    const responseBuffer = execSync(bufferInput.get()).toString();
-    bufferInput.clear();
+    const responseBuffer = execSync(buffer.get()).toString();
+    buffer.clear();
     process.stdout.cursorTo(0);
     process.stdout.write(responseBuffer);
     newLine();

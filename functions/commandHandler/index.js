@@ -22,8 +22,8 @@ whatCommand(buffer = "")
 
 export default
 function
-commandHandler(bufferInput) 
+commandHandler(buffer) 
 {
-    const command = whatCommand(bufferInput.get());
-    return command ? handlers[command](bufferInput) : false;
+    const command = whatCommand(buffer.get());
+    return command ? handlers[command](buffer) : false;
 }

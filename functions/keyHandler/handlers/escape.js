@@ -1,10 +1,10 @@
 export
 default
 function
-escape(bufferInput)
+escape(buffer)
 {
     process.stdout.clearLine(0);
     process.stdout.cursorTo(0); 
-    bufferInput.clear();
+    buffer.clear();
     return true;
 }

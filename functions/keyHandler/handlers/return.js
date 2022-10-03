@@ -5,13 +5,13 @@ import commandHandler from "../../commandHandler/index.js";
 export
 default
 function
-returnEnter(bufferInput)
+returnEnter(buffer)
 {
-    if (commandHandler(bufferInput)) {
+    if (commandHandler(buffer)) {
         return true;
     }
 
     newLine();
-    bufferInput.clear();
+    buffer.clear();
     return false;
 }
