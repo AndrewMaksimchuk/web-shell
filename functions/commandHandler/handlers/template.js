@@ -1,41 +1,82 @@
 import { join } from "path";
-import { constants, copyFileSync } from "fs";
-import COMMANDS from "../../../COMMANDS.js";
+import { CWD } from "../../process.js";
+import { constants, copyFileSync, unlinkSync } from "fs";
+import STATE from "../../../STATE.js";
 import newLine from "../../newLine.js";
+import COMMANDS from "../../../COMMANDS.js";
+import writeError from "../../writeError.js";
+
+
+function
+pathToComponent(componentName)
+{
+    return join(STATE.shellSource, "components", componentName);
+}
+
+
+function
+pathToTemplate(template)
+{
+    return join(STATE.shellSource, "templates", "vue", template);
+}
+
+
+const vueOption = pathToTemplate(COMMANDS.template.subcommands.create.options.option.template);
+const vueComposition = pathToTemplate(COMMANDS.template.subcommands.create.options.composition.template);
 
 
 export default
 function
 template(buffer)
 {
-    if (buffer.get().includes(COMMANDS.template.children.create.value)) {
-        try {
-            const CWD = process.cwd();
-            const words = buffer.get().trim().split(" ");
+    const input = buffer.get();
+
+    if (input.includes(COMMANDS.template.subcommands.create.value))
+    {
+        try
+        {
+            const words = input.trim().split(" ");
             const componentName = words.filter((word) => word.includes(".vue")).toString() || "Default.vue";
-            const saveTo = words.filter((word) => word.includes(COMMANDS.template.children.create.options.path))?.toString()?.split("=")?.at(-1)?.trim() || join(CWD, "components");
+            const saveTo = words.filter((word) => word.includes(COMMANDS.template.subcommands.create.options.path))?.toString()?.split("=")?.at(-1)?.trim() || join(CWD, "components");
             newLine();
             
-            if (buffer.get().includes(COMMANDS.template.children.create.options.option.value)) {
+            if (input.includes(COMMANDS.template.subcommands.create.options.option.value))
+            {
                 buffer.clear();
-                return copyFileSync(`./template/vue/${COMMANDS.template.children.create.options.option.template}`, join(saveTo, componentName), constants.COPYFILE_EXCL);
-            } else {
-                buffer.clear();
-                return copyFileSync(`./template/vue/composition.vue`, join(saveTo, componentName), constants.COPYFILE_EXCL);
+                copyFileSync(vueOption, join(saveTo, componentName), constants.COPYFILE_EXCL);
+                return true;
             }
-        } catch (error) {
-            process.stdout.write(`\n${error.message}`);
+            else
+            {
+                buffer.clear();
+                copyFileSync(vueComposition, join(saveTo, componentName), constants.COPYFILE_EXCL);
+                return true;
+            }
+        }
+        catch (error)
+        {
+            writeError(`\n${error.message}`);
+            buffer.clear();
+            return true;
         }
     }
 
-    if (buffer.get().includes(COMMANDS.template.children.remove)) {
-        return; // todo
+    if (input.includes(COMMANDS.template.subcommands.remove))
+    {
+        try 
+        {
+            const componentName = input.split(COMMANDS.template.subcommands.remove).at(-1).trim();
+            unlinkSync(pathToComponent(componentName));
+            newLine();
+            buffer.clear();
+            return true;
+            
+        } 
+        catch (error) 
+        {
+            writeError(`\n${error.message}`);
+            buffer.clear();
+            return true;
+        }
     }
 }
-
-/*
-template create NewUser.vue
-template create NewUser.vue --option
-template create NewUser.vue --composition
-template create NewUser.vue path=absolute_path
-*/

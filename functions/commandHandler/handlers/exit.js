@@ -1,7 +1,9 @@
-export
-default
+import processExit from "../../processExit.js";
+
+
+export default
 function
 exit()
 {
-    process.exit();
+    processExit();
 }

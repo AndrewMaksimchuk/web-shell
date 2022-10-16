@@ -1,6 +1,9 @@
+import processExit from "../../processExit.js";
+
+
 export default
 function
-ctrlC(buffer, ctrl)
+ctrlC(_, ctrl)
 {
-    return ctrl ? process.exit() : false;
+    return ctrl ? processExit() : false;
 }

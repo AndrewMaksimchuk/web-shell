@@ -1,6 +1,9 @@
-import buffer from "../BUFFER.js";
 import log from "./log.js";
+import hint from "./hint.js";
+import write from "./write.js";
+import buffer from "../BUFFER.js";
 import keyHandler from "./keyHandler/index.js";
+import normalizeInput from "./normalizeInput.js";
 
 
 export default
@@ -11,6 +14,8 @@ keypressHandler(str, key)
 
 	if(keyHandler(key, buffer)) return;
 
+	write(str);
     buffer.add(str);
-	process.stdout.write(String(str));
+	normalizeInput(buffer);
+	hint();
 }

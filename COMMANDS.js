@@ -1,20 +1,67 @@
 export default
 {
+    cd: "cd",
+    ls: "ls",
     npm: "npm",
     make: "make",
     exit: "exit",
-    run:
+    help: "help",
+    read: "read",
+    mkdir: "mkdir",
+    history: "history",
+    markdown: "markdown",
+    html: "html",
+    css: "css",
+    note: 
     {
-        value: "run",
-        option:
+        value: "note",
+        subcommands:
         {
-
-        }
+            show: 
+            {
+                value: "show",
+            },
+            create: 
+            {
+                value: "create",
+            },
+            remove: 
+            {
+                value: "remove",
+            },
+            update: 
+            {
+                value: "update",
+            },
+            search: 
+            {
+                value: "search",
+            },
+            clear:
+            {
+                value: "clear",
+            },
+        },
+    },
+    documentation:
+    {
+        value: "documentation",
+        subcommands:
+        {
+            read:
+            {
+                value: "read",
+            },
+            generate:
+            {
+                value: "generate",
+            },
+        },
     },
     template: 
     {
         value: 'template',
-        children:
+        subcommands:
         {
             create: 
             {

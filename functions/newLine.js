@@ -1,6 +1,9 @@
+import write from "./write.js";
+
+
 export default
 function
-newLine() 
+newLine(value = "") 
 {
-	return process.stdout.write("\n");
+	return value ? write(`\n${value}\n`) : write("\n");
 }

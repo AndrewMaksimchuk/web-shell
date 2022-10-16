@@ -1,12 +1,12 @@
 export default 
 {
-    backspace: "backspace",
-    return: "return", // Enter
-    tab: "tab",
     up: "up",
+    tab: "tab",
     down: "down",
     left: "left",
     right: "right",
     escape: "escape",
+    backspace: "backspace",
     ctrl_c:"c", // Ctrl + c
+    "return": "return", // Enter
 }

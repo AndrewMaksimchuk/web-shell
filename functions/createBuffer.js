@@ -3,8 +3,9 @@ function
 createBuffer()
 {
 	let data = "";
-	let x = 0;
-	let y = 0;
+	let hint = "";
+	let width = 0;
+	let height = 0;
 	return {
 		toString: function() 
 		{
@@ -28,5 +29,17 @@ createBuffer()
 		get: function() {
 			return data;
 		},
+		setHint: function(value = "") {
+			hint = value;
+			return this;
+		},
+		getHint: function() {
+			return hint;
+		},
+		setWindowSize: function(winWidth = 0, winHeight = 0) {
+			width = winWidth;
+			height = winHeight;
+			return this;
+		}
 	};
 }

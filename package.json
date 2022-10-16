@@ -1,17 +1,20 @@
 {
   "name": "web-shell",
-  "version": "0.1.0",
-  "description": "",
+  "version": "1.2.0",
+  "description": "Shell on Node.js for...",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "echo": "echo 'Hello world!'"
+    "start": "node index.js $1",
+    "executable": "chmod +x ./index.js",
+    "install": "npm run executable && node ./install.js",
+    "remove": "node ./remove.js",
+    "hook_install": "cp ./hooks/commit-msg ./.git/hooks"
   },
   "keywords": [
-    "shell"
+    "shell", "web", "vue", "npm", "make"
   ],
-  "author": "",
+  "author": "Andrew Maksimchuk",
   "license": "MIT",
   "dependencies": {
     "@types/node": "^18.7.18"

@@ -2,6 +2,7 @@
 
 
 import readline from "readline";
+import header from "./functions/header.js";
 import keypressHandler from "./functions/keypressHandler.js";
 
 
@@ -10,7 +11,8 @@ process.stdin.setRawMode(true);
 process.stdin.setEncoding("utf8");
 
 
-process.stdout.write(`${process.cwd()} ${process.stdout.columns}x${process.stdout.rows}\n\n`);
+console.clear();
+header();
 
 
 process.stdin.on("keypress", keypressHandler);
