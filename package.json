@@ -9,7 +9,7 @@
     "executable": "chmod +x ./index.js",
     "install": "npm run executable && node ./install.js",
     "remove": "node ./remove.js",
-    "hook_install": "cp ./hooks/commit-msg ./.git/hooks"
+    "hook_install": "cp ./hooks/commit-msg ./.git/hooks && chmod +x ./.git/hooks/commit-msg"
   },
   "keywords": [
     "shell", "web", "vue", "npm", "make"
